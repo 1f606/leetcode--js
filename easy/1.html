@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function ListNode(val) {
+      this.val = val;
+      this.next = null;
+    }
+
+    let l1 = new ListNode(1)
+    l1.next = new ListNode(0)
+    l1.next.next = new ListNode(0)
+    l1.next.next.next = new ListNode(0)
+    l1.next.next.next.next = new ListNode(0)
+    l1.next.next.next.next.next = new ListNode(0)
+    l1.next.next.next.next.next.next = new ListNode(1)
+
+    let l2 = new ListNode(5)
+    l2.next = new ListNode(6)
+    l2.next.next = new ListNode(4)
+
+    var addTwoNumbers = function (l1, l2) {
+      let left = ''
+      let right = ''
+      while (l1) {
+        left = left + l1.val
+        l1 = l1.next
+      }
+
+      while (l2) {
+        right = right + l2.val
+        l2 = l2.next
+      }
+      left = left.split('').reverse().join('')
+      right = right.split('').reverse().join('')
+      let result = Number(left) + Number(right)
+      result = result.toString().split('').reverse().join('')
+      let resNode = null
+      let temp = null
+      for (let i = 0; i < result.length; i++) {
+        if (i === 0) {
+          temp = new ListNode(result[i])
+          resNode = temp
+          continue
+        }
+
+        temp.next = new ListNode(result[i])
+        temp = temp.next
+      }
+      console.log(resNode)
+      return resNode
+    };
+    addTwoNumbers(l1, l2)
+  </script>
+</body>
+
+</html>
